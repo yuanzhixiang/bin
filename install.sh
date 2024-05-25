@@ -11,9 +11,9 @@ SCRIPT_URL="https://raw.githubusercontent.com/yuanzhixiang/bin/main/$SCRIPT_NAME
 curl -fsSL "$SCRIPT_URL" -o "$BIN_DIR/$SCRIPT_NAME"
 chmod +x "$BIN_DIR/$SCRIPT_NAME"
 
-# Add script source to .bashrc if not already added
-if ! grep -q "source $BIN_DIR/$SCRIPT_NAME" "$HOME/.bashrc"; then
-    echo "source $BIN_DIR/$SCRIPT_NAME" >> "$HOME/.bashrc"
+# Add script source to .bash_profile if not already added
+if ! grep -q "source $BIN_DIR/$SCRIPT_NAME" "$HOME/.bash_profile"; then
+    echo "source $BIN_DIR/$SCRIPT_NAME" >> "$HOME/.bash_profile"
 fi
 
 echo "Installation completed. The package manager info script will run on each shell session."
