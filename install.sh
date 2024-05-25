@@ -4,8 +4,12 @@ BIN_DIR="$HOME/.bin"
 SCRIPT_NAME="print_package_manager_info.sh"
 SCRIPT_URL="https://raw.githubusercontent.com/yuanzhixiang/bin/main/$SCRIPT_NAME"
 
-# Create .bin directory if it doesn't exist
-[ ! -d "$BIN_DIR" ] && mkdir -p "$BIN_DIR"
+# Create .bin directory if it doesn't exist; otherwise, clear the directory
+if [ ! -d "$BIN_DIR" ]; then
+    mkdir -p "$BIN_DIR"
+else
+    rm -rf "$BIN_DIR"/*
+fi
 
 # Download the script
 curl -fsSL "$SCRIPT_URL" -o "$BIN_DIR/$SCRIPT_NAME"
