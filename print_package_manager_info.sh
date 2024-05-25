@@ -16,9 +16,9 @@ print_in_box() {
     local padding=4
     local total_len=$((len + padding))
     local border=$(printf '%*s' "$total_len" '' | tr ' ' '*')
-    printf "${CYAN}+%s+\n" "$border"
-    printf "${CYAN}|  %s  |\n" "${NC}${s}${CYAN}"
-    printf "${CYAN}+%s+${NC}\n" "$border"
+    echo -e "${CYAN}+${border// /*}+${NC}"
+    echo -e "${CYAN}|  ${NC}${s}${CYAN}  |${NC}"
+    echo -e "${CYAN}+${border// /*}+${NC}"
 }
 
 # Detect package manager and print the result
