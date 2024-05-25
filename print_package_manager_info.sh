@@ -13,10 +13,12 @@ NC='\033[0m' # No Color
 print_in_box() {
     local s="$*"
     local len=${#s}
-    local border=$(printf '%*s' "$len" '' | tr ' ' '*')
-    echo -e "${CYAN}+${border// /*}+"
-    echo -e "${CYAN}|${NC}${s}${CYAN}|"
-    echo -e "${CYAN}+${border// /*}+${NC}"
+    local padding=4
+    local total_len=$((len + padding))
+    local border=$(printf '%*s' "$total_len" '' | tr ' ' '*')
+    printf "${CYAN}+%s+\n" "$border"
+    printf "${CYAN}|  %s  |\n" "${NC}${s}${CYAN}"
+    printf "${CYAN}+%s+${NC}\n" "$border"
 }
 
 # Detect package manager and print the result
