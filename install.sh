@@ -19,7 +19,6 @@ fi
 
 deleteOldBinFolder() {
     # Create .bin directory if it doesn't exist; otherwise, clear the directory
-    ## TODO don't create .bin directory if it doesn't exist
     if [ ! -d "$BIN_DIR" ]; then
         echo "$BIN_DIR does not exist. No files to delete."
         return
@@ -44,6 +43,11 @@ downloadSciptFromGitHub() {
         echo "Added $HOME/.bin to PATH in .bash_profile"
     fi
 
+    # Add script source to .bash_profile if not already added
+    if ! grep -q "source $BIN_DIR/print_package_manager_info.sh" "$HOME/.bash_profile"; then
+        echo "source $BIN_DIR/print_package_manager_info.sh" >>"$HOME/.bash_profile"
+    fi
+
     # Source the updated .bash_profile to update the PATH immediately (useful if running interactively)
     if [ -f "$HOME/.bash_profile" ]; then
         source "$HOME/.bash_profile"
@@ -52,5 +56,7 @@ downloadSciptFromGitHub() {
 
 deleteOldBinFolder
 downloadSciptFromGitHub
+
+/bin/bash $BIN_DIR/print_package_manager_info.sh
 
 echo "Installation completed. The package manager info script will run on each shell session."
