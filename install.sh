@@ -32,7 +32,7 @@ deleteOldBinFolder() {
 
 downloadSciptFromGitHub() {
     echo "Downloading all scripts from GitHub to $BIN_DIR..."
-    git clone https://github.com/yuanzhixiang/bin.git ${BIN_DIR}
+    git clone https://github.com/yuanzhixiang/bin.git --depth=1 ${BIN_DIR}
 
     # Make all downloaded files executable
     chmod +x "$BIN_DIR"/*
@@ -56,7 +56,5 @@ downloadSciptFromGitHub() {
 
 deleteOldBinFolder
 downloadSciptFromGitHub
-
-/bin/bash $BIN_DIR/print_package_manager_info.sh
 
 echo "Installation completed. The package manager info script will run on each shell session."
