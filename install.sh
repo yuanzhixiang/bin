@@ -27,7 +27,7 @@ deleteOldBinFolder() {
         # Print all old files, then delete
         echo "Deleting old files in $BIN_DIR:"
         ls -l "$BIN_DIR"
-        rm -rf "$BIN_DIR"/*
+        rm -rf "$BIN_DIR"
     fi
 }
 
