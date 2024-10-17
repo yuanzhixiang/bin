@@ -19,13 +19,14 @@ fi
 
 deleteOldBinFolder() {
     # Create .bin directory if it doesn't exist; otherwise, clear the directory
+    ## TODO don't create .bin directory if it doesn't exist
     if [ ! -d "$BIN_DIR" ]; then
-        echo "Creating $BIN_DIR"
-        mkdir -p "$BIN_DIR"
+        echo "$BIN_DIR does not exist. No files to delete."
+        return
     else
         # Print all old files, then delete
         echo "Deleting old files in $BIN_DIR:"
-        ls "$BIN_DIR"
+        ls -l "$BIN_DIR"
         rm -rf "$BIN_DIR"/*
     fi
 }
