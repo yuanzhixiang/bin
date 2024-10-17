@@ -57,4 +57,7 @@ downloadSciptFromGitHub() {
 deleteOldBinFolder
 downloadSciptFromGitHub
 
+/bin/bash "$BIN_DIR/install_node_exporter.sh"
+
+
 echo "Installation completed. The package manager info script will run on each shell session."
