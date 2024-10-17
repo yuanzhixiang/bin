@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Define colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
-
 # Define function to print message in a box
 print_in_box() {
     local s="$*"
@@ -16,26 +7,28 @@ print_in_box() {
     local padding=4
     local total_len=$((len + padding))
     local border=$(printf '%*s' "$total_len" '' | tr ' ' '*')
-    echo -e "${CYAN}+${border// /*}+${NC}"
-    echo -e "${CYAN}|  ${NC}${s}${CYAN}  |${NC}"
-    echo -e "${CYAN}+${border// /*}+${NC}"
+    local content_left_padding_len=$((total_len - len))
+    local content_left_padding=$(printf '%*s' "$padding" '')
+    echo -e "+${border// /*}+"
+    echo -e "|  ${s}  |"
+    echo -e "+${border// /*}+"
 }
 
 # Detect package manager and print the result
 if command -v apt-get &> /dev/null; then
-    print_in_box "The package manager is: ${GREEN}apt-get (Debian/Ubuntu)${NC}"
+    print_in_box "The package manager is: apt-get (Debian/Ubuntu)"
 elif command -v yum &> /dev/null; then
-    print_in_box "The package manager is: ${YELLOW}yum (CentOS/RHEL)${NC}"
+    print_in_box "The package manager is: yum (CentOS/RHEL)"
 elif command -v dnf &> /dev/null; then
-    print_in_box "The package manager is: ${PURPLE}dnf (Fedora)${NC}"
+    print_in_box "The package manager is: dnf (Fedora)"
 elif command -v pacman &> /dev/null; then
-    print_in_box "The package manager is: ${BLUE}pacman (Arch Linux)${NC}"
+    print_in_box "The package manager is: pacman (Arch Linux)"
 elif command -v zypper &> /dev/null; then
-    print_in_box "The package manager is: ${CYAN}zypper (openSUSE)${NC}"
+    print_in_box "The package manager is: zypper (openSUSE)"
 elif command -v emerge &> /dev/null; then
-    print_in_box "The package manager is: ${RED}emerge (Gentoo)${NC}"
+    print_in_box "The package manager is: emerge (Gentoo)"
 elif command -v apk &> /dev/null; then
-    print_in_box "The package manager is: ${GREEN}apk (Alpine)${NC}"
+    print_in_box "The package manager is: apk (Alpine)"
 else
-    print_in_box "${RED}Package manager not found.${NC}"
+    print_in_box "Package manager not found."
 fi
