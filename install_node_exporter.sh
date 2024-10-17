@@ -71,6 +71,8 @@ sudo systemctl enable node_exporter
 
 # Verify that node_exporter is running
 echo "Checking Node Exporter service status..."
-sudo systemctl status node_exporter
+# sudo systemctl status node_exporter
+
+curl localhost:9100/metrics
 
 echo "Node Exporter has been successfully installed and started."
